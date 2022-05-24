@@ -1,6 +1,6 @@
-from .base import BaseManager
-from ..hardware.memory import RAM
-from ...util.util import Util
+from core.managers.base import BaseManager
+from core.hardware.memory import RAM
+from util.util import Util
 
 class RAMManager(BaseManager[RAM]):
     def __init__(self):
@@ -20,16 +20,16 @@ class RAMManager(BaseManager[RAM]):
         if kernel.get("name", "").lower() == "unknown":
             return []
         
-        return getattr(self, "__" + kernel.get("short"))()
+        return getattr(self, "_" + kernel.get("short"))()
 
     # The following are marked private
     # since they're meant for
     # internal usage only.
-    def __osx(self) -> list[RAM]:
+    def _osx(self) -> list[RAM]:
         raise NotImplementedError
 
-    def __win(self) -> list[RAM]:
+    def _win(self) -> list[RAM]:
         raise NotImplementedError
     
-    def __linux(self) -> list[RAM]:
+    def _linux(self) -> list[RAM]:
         raise NotImplementedError

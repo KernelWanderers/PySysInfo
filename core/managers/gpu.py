@@ -1,6 +1,6 @@
-from .base import BaseManager
-from ..hardware.gpu import GPU
-from ...util.util import Util
+from core.managers.base import BaseManager
+from core.hardware.gpu import GPU
+from util.util import Util
 
 class GPUManager(BaseManager[GPU]):
     def __init__(self):
@@ -20,16 +20,16 @@ class GPUManager(BaseManager[GPU]):
         if kernel.get("name", "").lower() == "unknown":
             return []
 
-        return getattr(self, "__" + kernel.get("short"))()
+        return getattr(self, "_" + kernel.get("short"))()
 
     # The following are marked private
     # since they're meant for
     # internal usage only.
-    def __osx(self) -> list[GPU]:
+    def _osx(self) -> list[GPU]:
         raise NotImplementedError
 
-    def __win(self) -> list[GPU]:
+    def _win(self) -> list[GPU]:
         raise NotImplementedError
 
-    def __linux(self) -> list[GPU]:
+    def _linux(self) -> list[GPU]:
         raise NotImplementedError

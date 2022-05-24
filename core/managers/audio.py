@@ -1,6 +1,6 @@
-from .base import BaseManager
-from ..hardware.audio import AudioController
-from ...util.util import Util
+from core.managers.base import BaseManager
+from core.hardware.audio import AudioController
+from util.util import Util
 
 class AudioManager(BaseManager[AudioController]):
     def __init__(self):
@@ -20,16 +20,16 @@ class AudioManager(BaseManager[AudioController]):
         if kernel.get("name", "").lower() == "unknown":
             return []
         
-        return getattr(self, "__" + kernel.get("short"))()
+        return getattr(self, "_" + kernel.get("short"))()
 
     # The following are marked private
     # since they're meant for
     # internal usage only.
-    def __osx(self) -> list[AudioController]:
+    def _osx(self) -> list[AudioController]:
         raise NotImplementedError
 
-    def __win(self) -> list[AudioController]:
+    def _win(self) -> list[AudioController]:
         raise NotImplementedError
     
-    def __linux(self) -> list[AudioController]:
+    def _linux(self) -> list[AudioController]:
         raise NotImplementedError

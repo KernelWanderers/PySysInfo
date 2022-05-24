@@ -8,40 +8,24 @@ class AudioController:
         codec: str | None = None
     ):
         self.model = model
-        self.dev_id = dev_id
-        self.ven_id = ven_id
-        self.pci = pci
-        self.codec = codec
-
-    @property
-    def model(self) -> str:
         """ The model name of this Audio controller. """
-        return self.model
 
-    @property
-    def dev_id(self) -> str:
+        self.dev_id = dev_id
         """ The Device ID of this Audio controller. """
-        return self.dev_id
-    
-    @property
-    def ven_id(self) -> str:
+
+        self.ven_id = ven_id
         """ The Vendor ID of this Audio controller. """
-        return self.ven_id
 
-    @property
-    def pci(self) -> str:
+        self.pci = pci
         """ The raw PCI path of this Audio controller (if available.) """
-        return self.pci
 
-    @property
-    def codec(self) -> str:
+        self.codec = codec
         """ The ALC codec of this Audio controller (if available.) """
+
         if (
-            type(self.ven_id) != str or
-            "10ec" not in self.ven_id.lower()
+            type(self.ven_id) == str and
+            "10ec" in self.ven_id.lower()
         ):
-            return
+            alc_codec = "ALC" + hex(int(self.ven_id, 16))[2:]
 
-        alc_codec = hex(int(self.ven_id, 16))[2:]
-
-        return "ALC" + alc_codec
+            self.codec = alc_codec

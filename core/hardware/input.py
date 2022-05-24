@@ -5,15 +5,9 @@ class InputDevice:
         protocol: str
     ):
         self.model = model
-        self.protocol = protocol
-
-    @property
-    def model(self) -> str:
         """ The model name of this input device. """
-        return self.model
 
-    @property
-    def protocol(self) -> str:
+        self.protocol = protocol
         """ 
         The underlying protocol of this input device.
 
@@ -23,4 +17,3 @@ class InputDevice:
             - HID over USB
             ...        
         """
-        return self.protocol

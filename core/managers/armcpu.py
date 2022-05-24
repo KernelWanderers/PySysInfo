@@ -1,14 +1,13 @@
-from .base import BaseManager
-from ..hardware.x86cpu import X86CPU
-from ..hardware.armcpu import ARMCPU
-from ...util.util import Util
+from core.managers.base import BaseManager
+from core.hardware.armcpu import ARMCPU
+from util.util import Util
 
 
-class CPUManager(BaseManager[X86CPU | ARMCPU]):
+class ARMCPUManager(BaseManager[ARMCPU]):
     def __init__(self):
         pass
 
-    def cpu_info(self) -> list[X86CPU] | list[ARMCPU]:
+    def cpu_info(self) -> list[ARMCPU]:
         """ 
         Extracts information about the CPU(s) inside 
         of the current system.
@@ -22,16 +21,16 @@ class CPUManager(BaseManager[X86CPU | ARMCPU]):
         if kernel.get("name", "").lower() == "unknown":
             return []
 
-        return getattr(self, "__" + kernel.get("short"))()
+        return getattr(self, "_" + kernel.get("short"))()
 
     # The following are marked private
     # since they're meant for
     # internal usage only.
-    def __osx(self) -> list[X86CPU] | list[ARMCPU]:
+    def _osx(self) -> list[ARMCPU]:
         raise NotImplementedError
 
-    def __win(self) -> list[X86CPU] | list[ARMCPU]:
+    def _win(self) -> list[ARMCPU]:
         raise NotImplementedError
 
-    def __linux(self) -> list[X86CPU] | list[ARMCPU]:
+    def _linux(self) -> list[ARMCPU]:
         raise NotImplementedError

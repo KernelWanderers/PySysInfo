@@ -5,13 +5,13 @@ T = TypeVar("T")
 
 class BaseManager(Generic[T]):
     @abstractmethod
-    def __osx(self) -> list[T]:
+    def _osx(self) -> list[T]:
         raise NotImplementedError
 
     @abstractmethod
-    def __win(self) -> list[T]:
+    def _win(self) -> list[T]:
         raise NotImplementedError
     
     @abstractmethod
-    def __linux(self) -> list[T]:
+    def _linux(self) -> list[T]:
         raise NotImplementedError

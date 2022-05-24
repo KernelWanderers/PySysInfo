@@ -20,111 +20,76 @@ class GPU:
         generation: int | None = None
     ):
         self.model = model
-        self.pci = pci,
-        self.acpi = acpi,
-        self.dev_id = dev_id
-        self.ven_id = ven_id
-        self.codename = codename
-        self.vendor = vendor
-        self.cores = cores
-        self.ne_cores = ne_cores
-        self.generation = generation
-
-    @property
-    def model(self) -> str:
         """ The (model) name of this GPU. """
-        return self.model
 
-    @property
-    def pci(self) -> str:
-        """ Returns the raw PCI path of this GPU. """
-        return self.pci
+        self.pci = pci
+        """ The raw PCI path of this GPU. """
 
-    @property
-    def acpi(self) -> str:
-        """ Returns the raw ACPI path of this GPU. """
-        return self.acpi
+        self.acpi = acpi
+        """ The raw ACPI path of this GPU. """
 
-    @property
-    def dev_id(self) -> str:
-        """ Returns the Device ID of this GPU. """
-        return self.dev_id
+        self.dev_id = dev_id
+        """ The Device ID of this GPU. """
 
-    @property
-    def ven_id(self) -> str:
-        """ Returns the Vendor ID of this GPU. """
-        return self.ven_id
+        self.ven_id = ven_id
+        """ The Vendor ID of this GPU. """
 
-    @property
-    def codename(self) -> str | None:
+        self.vendor = vendor
+        """ The (readable) vendor of this GPU (if available.) """
+
+        self.codename = (
+            codename
+            if type(self.vendor) == str and
+            self.vendor.lower() != "apple"
+            else None
+        )
         """ 
-        Returns the codename of this GPU (if available.)
+        The codename of this GPU (if available.)
 
         Restricted to x86_64/x86 iGFXs and dGPUs, 
         can't yet handle Apple ARM64 chips.
 
         Returns nothing if it's Apple ARM64.
         """
-        if (
-            type(self.vendor) == str or
-            self.vendor.lower() != "apple"
-        ):
-            return
 
-        return self.codename
-
-    @property
-    def vendor(self) -> str | None:
-        """ Returns the (readable) vendor of this GPU (if available.) """
-        return self.vendor
-
-    @property
-    def cores(self) -> int | None:
+        self.cores = (
+            cores
+            if type(self.vendor) == str and
+            self.vendor.lower() == "apple"
+            else None
+        )
         """ 
-        Returns the number of cores of this GPU device (if available.) 
+        The number of cores of this GPU device (if available.) 
 
         This property *ONLY* applies to Apple ARM64 iGFX.
 
         Returns nothing if it's not Apple ARM64.
         """
-        if (
-            type(self.vendor) == str and
-            self.vendor.lower() != "apple"
-        ):
-            return
 
-        return self.cores
-
-    @property
-    def ne_cores(self) -> int | None:
+        self.ne_cores = (
+            ne_cores
+            if type(self.vendor) == str and
+            self.vendor.lower() == "apple"
+            else None
+        )
         """ 
-        Returns the number of Neural Engine cores of this GPU device (if available.) 
+        The number of Neural Engine cores of this GPU device (if available.) 
 
         This property *ONLY* applies to Apple ARM64 iGFX.
 
         Returns nothing if it's not Apple ARM64.
         """
-        if (
-            type(self.vendor) == str and
-            self.vendor.lower() != "apple"
-        ):
-            return
 
-        return self.ne_cores
-
-    @property
-    def generation(self) -> int | None:
+        self.generation = (
+            generation
+            if type(self.vendor) == str and
+            self.vendor.lower() == "apple"
+            else None
+        )
         """ 
-        Returns the generation of this GPU device (if available.) 
+        The generation of this GPU device (if available.) 
 
         This property *ONLY* applies to Apple ARM64 iGFX.
 
         Returns nothing if it's not Apple ARM64.
         """
-        if (
-            type(self.vendor) == str and
-            self.vendor.lower() != "apple"
-        ):
-            return
-
-        return self.generation

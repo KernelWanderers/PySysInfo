@@ -1,6 +1,6 @@
-from .base import BaseManager
-from ..hardware.network import NetworkController
-from ...util.util import Util
+from core.managers.base import BaseManager
+from core.hardware.network import NetworkController
+from util.util import Util
 
 class NetworkManager(BaseManager[NetworkController]):
     def __init__(self):
@@ -20,16 +20,16 @@ class NetworkManager(BaseManager[NetworkController]):
         if kernel.get("name", "").lower() == "unknown":
             return []
         
-        return getattr(self, "__" + kernel.get("short"))()
+        return getattr(self, "_" + kernel.get("short"))()
 
     # The following are marked private
     # since they're meant for
     # internal usage only.
-    def __osx(self) -> list[NetworkController]:
+    def _osx(self) -> list[NetworkController]:
         raise NotImplementedError
 
-    def __win(self) -> list[NetworkController]:
+    def _win(self) -> list[NetworkController]:
         raise NotImplementedError
     
-    def __linux(self) -> list[NetworkController]:
+    def _linux(self) -> list[NetworkController]:
         raise NotImplementedError

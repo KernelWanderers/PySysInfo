@@ -8,32 +8,16 @@ class NetworkController:
         acpi: str
     ):
         self.model = model
-        self.dev_id = dev_id
-        self.ven_id = ven_id
-        self.pci = pci
-        self.acpi = acpi
-
-    @property
-    def model(self) -> str:
         """ The (model) name of this network controller. """
-        return self.model
 
-    @property
-    def dev_id(self) -> str:
-        """ Returns the Device ID of this network controller. """
-        return self.dev_id
-
-    @property
-    def ven_id(self) -> str:
-        """ Returns the Vendor ID of this network controller. """
-        return self.ven_id
-
-    @property
-    def pci(self) -> str:
-        """ Returns the raw PCI path of this network controller. """
-        return self.pci
-
-    @property
-    def acpi(self) -> str:
-        """ Returns the raw ACPI path of this network controller. """
-        return self.acpi
+        self.dev_id = dev_id
+        """ The Device ID of this network controller. """
+        
+        self.ven_id = ven_id
+        """ The Vendor ID of this network controller. """
+        
+        self.pci = pci
+        """ The raw PCI path of this network controller. """
+        
+        self.acpi = acpi
+        """ The raw ACPI path of this network controller. """

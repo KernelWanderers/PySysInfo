@@ -1,6 +1,6 @@
-from .base import BaseManager
-from ..hardware.storage import StorageDevice
-from ...util.util import Util
+from core.managers.base import BaseManager
+from core.hardware.storage import StorageDevice
+from util.util import Util
 
 class StorageManager(BaseManager[StorageDevice]):
     def __init__(self):
@@ -20,16 +20,16 @@ class StorageManager(BaseManager[StorageDevice]):
         if kernel.get("name", "").lower() == "unknown":
             return []
         
-        return getattr(self, "__" + kernel.get("short"))()
+        return getattr(self, "_" + kernel.get("short"))()
 
     # The following are marked private
     # since they're meant for
     # internal usage only.
-    def __osx(self) -> list[StorageDevice]:
+    def _osx(self) -> list[StorageDevice]:
         raise NotImplementedError
 
-    def __win(self) -> list[StorageDevice]:
+    def _win(self) -> list[StorageDevice]:
         raise NotImplementedError
     
-    def __linux(self) -> list[StorageDevice]:
+    def _linux(self) -> list[StorageDevice]:
         raise NotImplementedError

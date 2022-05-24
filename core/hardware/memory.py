@@ -5,17 +5,10 @@ class RAMSlot:
         channel: str
     ):
         self.bank = bank
+        """ The bank location of this memory module. """
+
         self.channel = channel
-
-    @property
-    def bank(self) -> str:
-        """ Returns the bank location of this memory module. """
-        return self.bank
-
-    @property
-    def channel(self) -> str:
-        """ Returns the channel location of this memory module. """
-        return self.channel
+        """ The channel location of this memory module. """
 
 class RAM:
     def __init__(
@@ -28,38 +21,19 @@ class RAM:
         capacity: int
     ):
         self.part_no = part_no
+        """ The Part-Number of this memory module. """
+
         self.ram_type = ram_type
+        """ The RAM type of this module. """
+
         self.slot = slot
+        """ Details about this memory module's slot location. """
+
         self.frequency = frequency
+        """ The frequency of this memory module represented in Hz. """
+
         self.manufacturer = manufacturer
+        """ The manufacturer of this memory module. """
+
         self.capacity = capacity
-
-    @property
-    def part_no(self) -> str:
-        """ Returns the Part-Number of this memory module. """
-        return self.part_no
-
-    @property
-    def ram_type(self) -> str:
-        """ Returns the RAM type of this module. """
-        return self.ram_type
-
-    @property
-    def slot(self) -> RAMSlot:
-        """ Returns details about this memory module's slot location. """
-        return self.slot
-
-    @property
-    def frequency(self) -> int:
-        """ Returns the frequency of this memory module represented in Hz. """
-        return self.frequency
-
-    @property
-    def manufacturer(self) -> str:
-        """ Returns the manufacturer of this memory module. """
-        return self.manufacturer
-
-    @property
-    def capacity(self) -> str:
-        """ Returns the capacity of this memory module represented in bytes. """
-        return self.capacity
+        """ The capacity of this memory module represented in bytes. """

@@ -1,6 +1,6 @@
-from .base import BaseManager
-from ..hardware.input import InputDevice
-from ...util.util import Util
+from core.managers.base import BaseManager
+from core.hardware.input import InputDevice
+from util.util import Util
 
 class InputManager(BaseManager[InputDevice]):
     def __init__(self):
@@ -20,16 +20,16 @@ class InputManager(BaseManager[InputDevice]):
         if kernel.get("name", "").lower() == "unknown":
             return []
         
-        return getattr(self, "__" + kernel.get("short"))()
+        return getattr(self, "_" + kernel.get("short"))()
 
     # The following are marked private
     # since they're meant for
     # internal usage only.
-    def __osx(self) -> list[InputDevice]:
+    def _osx(self) -> list[InputDevice]:
         raise NotImplementedError
 
-    def __win(self) -> list[InputDevice]:
+    def _win(self) -> list[InputDevice]:
         raise NotImplementedError
     
-    def __linux(self) -> list[InputDevice]:
+    def _linux(self) -> list[InputDevice]:
         raise NotImplementedError
