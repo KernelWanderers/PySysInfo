@@ -7,37 +7,69 @@ class CPUID_INSTRUCTIONS(Enum):
     #             FEATURES STORED IN EAX
     #
     #================================================
-    #               = (7, 0, 0, 0)                   -- <RESERVED IN EAX>
-    #               = (7, 0, 0, 1)                   -- <RESERVED IN EAX>
-    #               = (7, 0, 0, 2)                   -- <RESERVED IN EAX>
-    #               = (7, 0, 0, 3)                   -- <RESERVED IN EAX>
-    #               = (7, 0, 0, 4)                   -- <RESERVED IN EAX>
-    AVX512_BF16     = (7, 0, 0, 5)#                  -- AVX-512 BFLOAT16 instructions
-    #               = (7, 0, 0, 6)                   -- <RESERVED IN EAX>
-    #               = (7, 0, 0, 7)                   -- <RESERVED IN EAX>
-    #               = (7, 0, 0, 8)                   -- <RESERVED IN EAX>
-    #               = (7, 0, 0, 9)                   -- <RESERVED IN EAX>
-    #               = (7, 0, 0, 10)                  -- <RESERVED IN EAX>
-    #               = (7, 0, 0, 11)                  -- <RESERVED IN EAX>
-    #               = (7, 0, 0, 12)                  -- <RESERVED IN EAX>
-    #               = (7, 0, 0, 13)                  -- <RESERVED IN EAX>
-    #               = (7, 0, 0, 14)                  -- <RESERVED IN EAX>
-    #               = (7, 0, 0, 15)                  -- <RESERVED IN EAX>
-    #               = (7, 0, 0, 16)                  -- <RESERVED IN EAX>
-    #               = (7, 0, 0, 17)                  -- <RESERVED IN EAX>
-    #               = (7, 0, 0, 18)                  -- <RESERVED IN EAX>
-    #               = (7, 0, 0, 19)                  -- <RESERVED IN EAX>
-    #               = (7, 0, 0, 21)                  -- <RESERVED IN EAX>
-    #               = (7, 0, 0, 22)                  -- <RESERVED IN EAX>
-    #               = (7, 0, 0, 23)                  -- <RESERVED IN EAX>
-    #               = (7, 0, 0, 24)                  -- <RESERVED IN EAX>
-    #               = (7, 0, 0, 25)                  -- <RESERVED IN EAX>
-    #               = (7, 0, 0, 26)                  -- <RESERVED IN EAX>
-    #               = (7, 0, 0, 27)                  -- <RESERVED IN EAX>
-    #               = (7, 0, 0, 28)                  -- <RESERVED IN EAX>
-    #               = (7, 0, 0, 29)                  -- <RESERVED IN EAX>
-    #               = (7, 0, 0, 30)                  -- <RESERVED IN EAX>
-    #               = (7, 0, 0, 31)                  -- <RESERVED IN EAX>
+    #               = (7, 1, 0, 0)                   -- <RESERVED IN EAX, WHEN EAX=7>
+    #               = (7, 1, 0, 1)                   -- <RESERVED IN EAX, WHEN EAX=7>
+    #               = (7, 1, 0, 2)                   -- <RESERVED IN EAX, WHEN EAX=7>
+    #               = (7, 1, 0, 3)                   -- <RESERVED IN EAX, WHEN EAX=7>
+    #               = (7, 1, 0, 4)                   -- <RESERVED IN EAX, WHEN EAX=7>
+    AVX512_BF16     = (7, 1, 0, 5)#                  -- AVX-512 BFLOAT16 instructions
+    #               = (7, 1, 0, 6)                   -- <RESERVED IN EAX, WHEN EAX=7>
+    #               = (7, 1, 0, 7)                   -- <RESERVED IN EAX, WHEN EAX=7>
+    #               = (7, 1, 0, 8)                   -- <RESERVED IN EAX, WHEN EAX=7>
+    #               = (7, 1, 0, 9)                   -- <RESERVED IN EAX, WHEN EAX=7>
+    #               = (7, 1, 0, 10)                  -- <RESERVED IN EAX, WHEN EAX=7>
+    #               = (7, 1, 0, 11)                  -- <RESERVED IN EAX, WHEN EAX=7>
+    #               = (7, 1, 0, 12)                  -- <RESERVED IN EAX, WHEN EAX=7>
+    #               = (7, 1, 0, 13)                  -- <RESERVED IN EAX, WHEN EAX=7>
+    #               = (7, 1, 0, 14)                  -- <RESERVED IN EAX, WHEN EAX=7>
+    #               = (7, 1, 0, 15)                  -- <RESERVED IN EAX, WHEN EAX=7>
+    #               = (7, 1, 0, 16)                  -- <RESERVED IN EAX, WHEN EAX=7>
+    #               = (7, 1, 0, 17)                  -- <RESERVED IN EAX, WHEN EAX=7>
+    #               = (7, 1, 0, 18)                  -- <RESERVED IN EAX, WHEN EAX=7>
+    #               = (7, 1, 0, 19)                  -- <RESERVED IN EAX, WHEN EAX=7>
+    #               = (7, 1, 0, 21)                  -- <RESERVED IN EAX, WHEN EAX=7>
+    #               = (7, 1, 0, 22)                  -- <RESERVED IN EAX, WHEN EAX=7>
+    #               = (7, 1, 0, 23)                  -- <RESERVED IN EAX, WHEN EAX=7>
+    #               = (7, 1, 0, 24)                  -- <RESERVED IN EAX, WHEN EAX=7>
+    #               = (7, 1, 0, 25)                  -- <RESERVED IN EAX, WHEN EAX=7>
+    #               = (7, 1, 0, 26)                  -- <RESERVED IN EAX, WHEN EAX=7>
+    #               = (7, 1, 0, 27)                  -- <RESERVED IN EAX, WHEN EAX=7>
+    #               = (7, 1, 0, 28)                  -- <RESERVED IN EAX, WHEN EAX=7>
+    #               = (7, 1, 0, 29)                  -- <RESERVED IN EAX, WHEN EAX=7>
+    #               = (7, 1, 0, 30)                  -- <RESERVED IN EAX, WHEN EAX=7>
+    #               = (7, 1, 0, 31)                  -- <RESERVED IN EAX, WHEN EAX=7>
+    DTS_CAPAB       = (6, 0, 0, 0)#                  -- Digital Thermal Sensor (DTS) capability
+    ITB_TECH_CAPAB  = (6, 0, 0, 1)#                  -- Intel Turbo Boost Technology capability
+    ARAT_CAPAB      = (6, 0, 0, 2)#                  -- Always Running APIC Timer (ARAT) capability
+    #               = (6, 0, 0, 3)#                  -- <RESERVED IN EAX, WHEN EAX=6>
+    PLN_CAPAB       = (6, 0, 0, 4)#                  -- Power Limit Notification (PLN) capability
+    ECMD_CAPAB      = (6, 0, 0, 5)#                  -- Extended Clock Modulation Duty (ECMD) capability
+    PTM_CAPAB       = (6, 0, 0, 6)#                  -- Package Thermal Management (PTM) capability
+    #               = (6, 0, 0, 7)                   -- <RESERVED IN EAX, WHEN EAX=6>
+    #               = (6, 0, 0, 8)                   -- <RESERVED IN EAX, WHEN EAX=6>
+    #               = (6, 0, 0, 9)                   -- <RESERVED IN EAX, WHEN EAX=6>
+    #               = (6, 0, 0, 11)                  -- <RESERVED IN EAX, WHEN EAX=6>
+    #               = (6, 0, 0, 12)                  -- <RESERVED IN EAX, WHEN EAX=6>
+    #               = (6, 0, 0, 13)                  -- <RESERVED IN EAX, WHEN EAX=6>
+    #               = (6, 0, 0, 14)                  -- <RESERVED IN EAX, WHEN EAX=6>
+    #               = (6, 0, 0, 15)                  -- <RESERVED IN EAX, WHEN EAX=6>
+    #               = (6, 0, 0, 16)                  -- <RESERVED IN EAX, WHEN EAX=6>
+    #               = (6, 0, 0, 17)                  -- <RESERVED IN EAX, WHEN EAX=6>
+    #               = (6, 0, 0, 18)                  -- <RESERVED IN EAX, WHEN EAX=6>
+    #               = (6, 0, 0, 19)                  -- <RESERVED IN EAX, WHEN EAX=6>
+    #               = (6, 0, 0, 20)                  -- <RESERVED IN EAX, WHEN EAX=6>
+    #               = (6, 0, 0, 21)                  -- <RESERVED IN EAX, WHEN EAX=6>
+    #               = (6, 0, 0, 22)                  -- <RESERVED IN EAX, WHEN EAX=6>
+    #               = (6, 0, 0, 23)                  -- <RESERVED IN EAX, WHEN EAX=6>
+    #               = (6, 0, 0, 24)                  -- <RESERVED IN EAX, WHEN EAX=6>
+    #               = (6, 0, 0, 25)                  -- <RESERVED IN EAX, WHEN EAX=6>
+    #               = (6, 0, 0, 26)                  -- <RESERVED IN EAX, WHEN EAX=6>
+    #               = (6, 0, 0, 27)                  -- <RESERVED IN EAX, WHEN EAX=6>
+    #               = (6, 0, 0, 28)                  -- <RESERVED IN EAX, WHEN EAX=6>
+    #               = (6, 0, 0, 29)                  -- <RESERVED IN EAX, WHEN EAX=6>
+    #               = (6, 0, 0, 30)                  -- <RESERVED IN EAX, WHEN EAX=6>
+    #               = (6, 0, 0, 31)                  -- <RESERVED IN EAX, WHEN EAX=6>
+
 
     #================================================
     #
@@ -99,7 +131,7 @@ class CPUID_INSTRUCTIONS(Enum):
     CX16            = (1, 0, 2, 13)#                 -- CMPXCHG16B instruction
     XTPR            = (1, 0, 2, 14)#                 -- Can disable sending task priority messages
     PDCM            = (1, 0, 2, 15)#                 -- Perfmon & debug capability
-    #               = (1, 0, 2, 16)                  -- <RESERVED IN ECX>
+    #               = (1, 0, 2, 16)                  -- <RESERVED IN ECX, WHEN EAX=1>
     PCID            = (1, 0, 2, 17)#                 -- Process context identifiers (CR4 bit 17)
     DCA             = (1, 0, 2, 18)#                 -- Direct cache access for DMA writes
     SSE4_1          = (1, 0, 2, 19)#                 -- SSE4.1 instructions
@@ -115,6 +147,37 @@ class CPUID_INSTRUCTIONS(Enum):
     F16C            = (1, 0, 2, 29)#                 -- F16C (half-precision) FP feature
     RDRND           = (1, 0, 2, 30)#                 -- RDRAND (on-chip random number generator) feature
     HYPERVISOR      = (1, 0, 2, 31)#                 -- Hypervisor present (always zero on physical CPUs)
+    HCF_CAPAB       = (6, 0, 2, 0)#                  -- Hardware Coordination Feedback capability
+    ACNT2_CAPAB     = (6, 0, 2, 1)#                  -- ACNT2 Capability
+    #               = (6, 0, 2, 2)                   -- <RESERVED IN ECX, WHEN EAX=6>
+    PEB_CAPAB       = (6, 0, 2, 3)#                  -- Performance-Energy Bias capability
+    #               = (6, 0, 0, 4)                   -- <RESERVED IN ECX, WHEN EAX=6>
+    #               = (6, 0, 0, 5)                   -- <RESERVED IN ECX, WHEN EAX=6>
+    #               = (6, 0, 0, 6)                   -- <RESERVED IN ECX, WHEN EAX=6>
+    #               = (6, 0, 0, 7)                   -- <RESERVED IN ECX, WHEN EAX=6>
+    #               = (6, 0, 0, 8)                   -- <RESERVED IN ECX, WHEN EAX=6>
+    #               = (6, 0, 0, 9)                   -- <RESERVED IN ECX, WHEN EAX=6>
+    #               = (6, 0, 0, 11)                  -- <RESERVED IN ECX, WHEN EAX=6>
+    #               = (6, 0, 0, 12)                  -- <RESERVED IN ECX, WHEN EAX=6>
+    #               = (6, 0, 0, 13)                  -- <RESERVED IN ECX, WHEN EAX=6>
+    #               = (6, 0, 0, 14)                  -- <RESERVED IN ECX, WHEN EAX=6>
+    #               = (6, 0, 0, 15)                  -- <RESERVED IN ECX, WHEN EAX=6>
+    #               = (6, 0, 0, 16)                  -- <RESERVED IN ECX, WHEN EAX=6>
+    #               = (6, 0, 0, 17)                  -- <RESERVED IN ECX, WHEN EAX=6>
+    #               = (6, 0, 0, 18)                  -- <RESERVED IN ECX, WHEN EAX=6>
+    #               = (6, 0, 0, 19)                  -- <RESERVED IN ECX, WHEN EAX=6>
+    #               = (6, 0, 0, 20)                  -- <RESERVED IN ECX, WHEN EAX=6>
+    #               = (6, 0, 0, 21)                  -- <RESERVED IN ECX, WHEN EAX=6>
+    #               = (6, 0, 0, 22)                  -- <RESERVED IN ECX, WHEN EAX=6>
+    #               = (6, 0, 0, 23)                  -- <RESERVED IN ECX, WHEN EAX=6>
+    #               = (6, 0, 0, 24)                  -- <RESERVED IN ECX, WHEN EAX=6>
+    #               = (6, 0, 0, 25)                  -- <RESERVED IN ECX, WHEN EAX=6>
+    #               = (6, 0, 0, 26)                  -- <RESERVED IN ECX, WHEN EAX=6>
+    #               = (6, 0, 0, 27)                  -- <RESERVED IN ECX, WHEN EAX=6>
+    #               = (6, 0, 0, 28)                  -- <RESERVED IN ECX, WHEN EAX=6>
+    #               = (6, 0, 0, 29)                  -- <RESERVED IN ECX, WHEN EAX=6>
+    #               = (6, 0, 0, 30)                  -- <RESERVED IN ECX, WHEN EAX=6>
+    #               = (6, 0, 0, 31)                  -- <RESERVED IN ECX, WHEN EAX=6>
     PREFETCHWT1     = (7, 0, 2, 0)#                  -- PREFETCHWT1 instruction
     AVX512_VBMI     = (7, 0, 2, 1)#                  -- AVX-512 Vector Bit Manipulation Instructions
     UMIP            = (7, 0, 2, 2)#                  -- User-mode Instruction Prevention
@@ -208,7 +271,7 @@ class CPUID_INSTRUCTIONS(Enum):
     PSE36           = (1, 0, 3, 17)#                 -- 36-bit page size extension
     PSN             = (1, 0, 3, 18)#                 -- Processor Serial Number
     CLFSH           = (1, 0, 3, 19)#                 -- CLFLUSH instruction (SSE2)
-    #               = (1, 0, 3, 20)                  -- <RESERVED IN EDX>
+    #               = (1, 0, 3, 20)                  -- <RESERVED IN EDX, WHEN EAX=1>
     DS              = (1, 0, 3, 21)#                 -- Debug store: save trace of executed jumps
     ACPI            = (1, 0, 3, 22)#                 -- Onboard thermal control MSRs for ACPI
     MMX             = (1, 0, 3, 23)#                 -- MMX instructions
@@ -262,7 +325,7 @@ class CPUID_INSTRUCTIONS(Enum):
   # MCE             = (0x80000001, 0, 3, 7)          -- Machine Check Exception
   # CX8             = (0x80000001, 0, 3, 8)          -- CMPXCHG8 (compare-and-swap) instruction
   # APIC            = (0x80000001, 0, 3, 9)          -- Onboard Advanced Programmable Interrupt Controller
-    #               = (0x80000001, 0, 3, 10)         -- <RESERVED IN EDX, WHEN EAX=80000001h>
+  #                 = (0x80000001, 0, 3, 10)         -- <RESERVED IN EDX, WHEN EAX=80000001h>
     SYSCALL         = (0x80000001, 0, 3, 11)#        -- SYSCALL and SYSRET instructions
   # MTRR            = (0x80000001, 0, 3, 12)         -- Memory Type Range Registers
   # PGE             = (0x80000001, 0, 3, 13)         -- Page Global Enable bit in CR4
@@ -273,14 +336,14 @@ class CPUID_INSTRUCTIONS(Enum):
   #                 = (0x80000001, 0, 3, 18)         -- <RESERVED IN EDX, WHEN EAX=80000001h>
     MP              = (0x80000001, 0, 3, 19)#        -- Multiprocessor Capable
     NX              = (0x80000001, 0, 3, 20)#        -- NX bit
-    #               = (0x80000001, 0, 3, 21)         -- <RESERVED IN EDX, WHEN EAX=80000001h>
+  #                 = (0x80000001, 0, 3, 21)         -- <RESERVED IN EDX, WHEN EAX=80000001h>
     MMXEXT          = (0x80000001, 0, 3, 22)#        -- Extended MMX
   # MMX             = (0x80000001, 0, 3, 23)         -- MMX instructions
   # FXSR            = (0x80000001, 0, 3, 24)         -- FXSAVE, FXRSTOR instructions (CR4 bit 9)
     FXSR_OPT        = (0x80000001, 0, 3, 25)#        -- FXSAVE/FXRSTOR optimizations
     PDPE1GB         = (0x80000001, 0, 3, 26)#        -- Gigabyte pages
     RDTSCP          = (0x80000001, 0, 3, 27)#        -- RDTSCP instruction
-    #               = (0x80000001, 0, 3, 28)         -- <RESERVED IN EDX, WHEN EAX=80000001h>
+  #                 = (0x80000001, 0, 3, 28)         -- <RESERVED IN EDX, WHEN EAX=80000001h>
     LM              = (0x80000001, 0, 3, 29)#        -- Long mode
     _3DNOWEXT       = (0x80000001, 0, 3, 30)#        -- Extended 3DNow!
     _3DNOW          = (0x80000001, 0, 3, 31)#        -- 3DNow!
