@@ -7,37 +7,6 @@ class CPUID_INSTRUCTIONS(Enum):
     #             FEATURES STORED IN EAX
     #
     #================================================
-    #               = (7, 1, 0, 0)                   -- <RESERVED IN EAX, WHEN EAX=7>
-    #               = (7, 1, 0, 1)                   -- <RESERVED IN EAX, WHEN EAX=7>
-    #               = (7, 1, 0, 2)                   -- <RESERVED IN EAX, WHEN EAX=7>
-    #               = (7, 1, 0, 3)                   -- <RESERVED IN EAX, WHEN EAX=7>
-    #               = (7, 1, 0, 4)                   -- <RESERVED IN EAX, WHEN EAX=7>
-    AVX512_BF16     = (7, 1, 0, 5)#                  -- AVX-512 BFLOAT16 instructions
-    #               = (7, 1, 0, 6)                   -- <RESERVED IN EAX, WHEN EAX=7>
-    #               = (7, 1, 0, 7)                   -- <RESERVED IN EAX, WHEN EAX=7>
-    #               = (7, 1, 0, 8)                   -- <RESERVED IN EAX, WHEN EAX=7>
-    #               = (7, 1, 0, 9)                   -- <RESERVED IN EAX, WHEN EAX=7>
-    #               = (7, 1, 0, 10)                  -- <RESERVED IN EAX, WHEN EAX=7>
-    #               = (7, 1, 0, 11)                  -- <RESERVED IN EAX, WHEN EAX=7>
-    #               = (7, 1, 0, 12)                  -- <RESERVED IN EAX, WHEN EAX=7>
-    #               = (7, 1, 0, 13)                  -- <RESERVED IN EAX, WHEN EAX=7>
-    #               = (7, 1, 0, 14)                  -- <RESERVED IN EAX, WHEN EAX=7>
-    #               = (7, 1, 0, 15)                  -- <RESERVED IN EAX, WHEN EAX=7>
-    #               = (7, 1, 0, 16)                  -- <RESERVED IN EAX, WHEN EAX=7>
-    #               = (7, 1, 0, 17)                  -- <RESERVED IN EAX, WHEN EAX=7>
-    #               = (7, 1, 0, 18)                  -- <RESERVED IN EAX, WHEN EAX=7>
-    #               = (7, 1, 0, 19)                  -- <RESERVED IN EAX, WHEN EAX=7>
-    #               = (7, 1, 0, 21)                  -- <RESERVED IN EAX, WHEN EAX=7>
-    #               = (7, 1, 0, 22)                  -- <RESERVED IN EAX, WHEN EAX=7>
-    #               = (7, 1, 0, 23)                  -- <RESERVED IN EAX, WHEN EAX=7>
-    #               = (7, 1, 0, 24)                  -- <RESERVED IN EAX, WHEN EAX=7>
-    #               = (7, 1, 0, 25)                  -- <RESERVED IN EAX, WHEN EAX=7>
-    #               = (7, 1, 0, 26)                  -- <RESERVED IN EAX, WHEN EAX=7>
-    #               = (7, 1, 0, 27)                  -- <RESERVED IN EAX, WHEN EAX=7>
-    #               = (7, 1, 0, 28)                  -- <RESERVED IN EAX, WHEN EAX=7>
-    #               = (7, 1, 0, 29)                  -- <RESERVED IN EAX, WHEN EAX=7>
-    #               = (7, 1, 0, 30)                  -- <RESERVED IN EAX, WHEN EAX=7>
-    #               = (7, 1, 0, 31)                  -- <RESERVED IN EAX, WHEN EAX=7>
     DTS_CAPAB       = (6, 0, 0, 0)#                  -- Digital Thermal Sensor (DTS) capability
     ITB_TECH_CAPAB  = (6, 0, 0, 1)#                  -- Intel Turbo Boost Technology capability
     ARAT_CAPAB      = (6, 0, 0, 2)#                  -- Always Running APIC Timer (ARAT) capability
@@ -69,6 +38,37 @@ class CPUID_INSTRUCTIONS(Enum):
     #               = (6, 0, 0, 29)                  -- <RESERVED IN EAX, WHEN EAX=6>
     #               = (6, 0, 0, 30)                  -- <RESERVED IN EAX, WHEN EAX=6>
     #               = (6, 0, 0, 31)                  -- <RESERVED IN EAX, WHEN EAX=6>
+    #               = (7, 1, 0, 0)                   -- <RESERVED IN EAX, WHEN EAX=7>
+    #               = (7, 1, 0, 1)                   -- <RESERVED IN EAX, WHEN EAX=7>
+    #               = (7, 1, 0, 2)                   -- <RESERVED IN EAX, WHEN EAX=7>
+    #               = (7, 1, 0, 3)                   -- <RESERVED IN EAX, WHEN EAX=7>
+    #               = (7, 1, 0, 4)                   -- <RESERVED IN EAX, WHEN EAX=7>
+    AVX512_BF16     = (7, 1, 0, 5)#                  -- AVX-512 BFLOAT16 instructions
+    #               = (7, 1, 0, 6)                   -- <RESERVED IN EAX, WHEN EAX=7>
+    #               = (7, 1, 0, 7)                   -- <RESERVED IN EAX, WHEN EAX=7>
+    #               = (7, 1, 0, 8)                   -- <RESERVED IN EAX, WHEN EAX=7>
+    #               = (7, 1, 0, 9)                   -- <RESERVED IN EAX, WHEN EAX=7>
+    #               = (7, 1, 0, 10)                  -- <RESERVED IN EAX, WHEN EAX=7>
+    #               = (7, 1, 0, 11)                  -- <RESERVED IN EAX, WHEN EAX=7>
+    #               = (7, 1, 0, 12)                  -- <RESERVED IN EAX, WHEN EAX=7>
+    #               = (7, 1, 0, 13)                  -- <RESERVED IN EAX, WHEN EAX=7>
+    #               = (7, 1, 0, 14)                  -- <RESERVED IN EAX, WHEN EAX=7>
+    #               = (7, 1, 0, 15)                  -- <RESERVED IN EAX, WHEN EAX=7>
+    #               = (7, 1, 0, 16)                  -- <RESERVED IN EAX, WHEN EAX=7>
+    #               = (7, 1, 0, 17)                  -- <RESERVED IN EAX, WHEN EAX=7>
+    #               = (7, 1, 0, 18)                  -- <RESERVED IN EAX, WHEN EAX=7>
+    #               = (7, 1, 0, 19)                  -- <RESERVED IN EAX, WHEN EAX=7>
+    #               = (7, 1, 0, 21)                  -- <RESERVED IN EAX, WHEN EAX=7>
+    #               = (7, 1, 0, 22)                  -- <RESERVED IN EAX, WHEN EAX=7>
+    #               = (7, 1, 0, 23)                  -- <RESERVED IN EAX, WHEN EAX=7>
+    #               = (7, 1, 0, 24)                  -- <RESERVED IN EAX, WHEN EAX=7>
+    #               = (7, 1, 0, 25)                  -- <RESERVED IN EAX, WHEN EAX=7>
+    #               = (7, 1, 0, 26)                  -- <RESERVED IN EAX, WHEN EAX=7>
+    #               = (7, 1, 0, 27)                  -- <RESERVED IN EAX, WHEN EAX=7>
+    #               = (7, 1, 0, 28)                  -- <RESERVED IN EAX, WHEN EAX=7>
+    #               = (7, 1, 0, 29)                  -- <RESERVED IN EAX, WHEN EAX=7>
+    #               = (7, 1, 0, 30)                  -- <RESERVED IN EAX, WHEN EAX=7>
+    #               = (7, 1, 0, 31)                  -- <RESERVED IN EAX, WHEN EAX=7>
 
 
     #================================================
