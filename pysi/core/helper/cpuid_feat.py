@@ -161,7 +161,7 @@ class CPUID_INSTRUCTIONS(Enum):
     OSVW            = (0x80000001, 0, 2, 9)#         -- OS Visible Workaround
     IBS             = (0x80000001, 0, 2, 10)#        -- Instruction Based Sampling
     XOP             = (0x80000001, 0, 2, 11)#        -- XOP instruction set
-    SKINIT          = (0x80000001, 0, 2, 12)#        --  SKINIT/STGI instructions
+    SKINIT          = (0x80000001, 0, 2, 12)#        -- SKINIT/STGI instructions
     WDT             = (0x80000001, 0, 2, 13)#        -- Watchdog timer
     #               = (0x80000001, 0, 2, 14)         -- <RESERVED IN ECX, WHEN EAX=800000001h>
     LWP             = (0x80000001, 0, 2, 15)#        -- Light Weight Profiling
