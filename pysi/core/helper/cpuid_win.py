@@ -184,12 +184,6 @@ class CPUID:
         func_type = CFUNCTYPE(None, POINTER(CPUID_struct), c_uint32, c_uint32)
         self.func_ptr = func_type(self.addr)
 
-    def is_set(self, leaf, subleaf, reg_idx, bit):
-        return bool(
-            (1 << bit) &
-            self.__class__(leaf, subleaf)[reg_idx]
-        )
-
     def __call__(self, eax, ecx=0):
         struct = CPUID_struct()
         self.func_ptr(struct, eax, ecx)

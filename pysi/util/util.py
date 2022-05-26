@@ -161,6 +161,12 @@ class Util:
 
         return pci_path
 
+    def feat_available(cpu, leaf, subleaf, reg_idx, bit):
+        return bool(
+            (1 << bit) &
+            cpu(leaf, subleaf)[reg_idx]
+        )
+
     def validate_pci_format(path: str, format: str) -> bool:
         # PCIROOT(0)#PCI(0200)
         if format.lower() == "windows":
