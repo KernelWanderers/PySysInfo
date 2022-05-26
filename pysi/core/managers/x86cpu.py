@@ -52,7 +52,44 @@ class X86CPUManager(BaseManager[X86CPU]):
         )]
 
     def _win(self) -> list[X86CPU] | None:
-        raise NotImplementedError
+        import wmi
+        from core.helper.cpuid_win import CPUID
+        from core.helper.cpuid_feat import CPUID_INSTRUCTIONS
+
+        try:
+            CPU = wmi.WMI().instances("Win32_Processor")[0]
+
+            cpu = CPUID()
+
+            features = []
+
+            for feature in CPUID_INSTRUCTIONS:
+                if type(feature.value) == list:
+                    for value in feature.value:
+                        if Util.feat_available(cpu, *value):
+                            features.append(feature.name)
+                            break
+                    continue
+
+                if Util.feat_available(cpu, *feature.value):
+                    name = feature.name[1:] if feature.name.startswith("_") else feature.name
+                    
+                    features.append(name)
+
+            model = CPU.wmi_property("Name").value
+            cores = CPU.wmi_property("NumberOfCores").value
+            threads = CPU.wmi_property("NumberOfLogicalProcessors").value
+            vendor = CPU.wmi_property("Manufacturer").value
+
+            return [X86CPU(
+                model=model,
+                cores=cores,
+                threads=threads,
+                vendor=vendor,
+                features=features
+            )]
+        except Exception as e:
+            return []
 
     def _linux(self) -> list[X86CPU] | None:
         raise NotImplementedError
