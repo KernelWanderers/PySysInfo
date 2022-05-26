@@ -6,7 +6,7 @@ class NetworkManager(BaseManager[NetworkController]):
     def __init__(self):
         pass
     
-    def net_info(self) -> list[NetworkController]:
+    def net_info(self) -> list[NetworkController] | None:
         """
         Extracts information about the Network controller(s)
         inside of the current system.
@@ -20,16 +20,19 @@ class NetworkManager(BaseManager[NetworkController]):
         if kernel.get("name", "").lower() == "unknown":
             return []
         
-        return getattr(self, "_" + kernel.get("short"))()
+        try:
+            return getattr(self, "_" + kernel.get("short"))()
+        except Exception:
+            return []
 
     # The following are marked private
     # since they're meant for
     # internal usage only.
-    def _osx(self) -> list[NetworkController]:
+    def _osx(self) -> list[NetworkController] | None:
         raise NotImplementedError
 
-    def _win(self) -> list[NetworkController]:
+    def _win(self) -> list[NetworkController] | None:
         raise NotImplementedError
     
-    def _linux(self) -> list[NetworkController]:
+    def _linux(self) -> list[NetworkController] | None:
         raise NotImplementedError

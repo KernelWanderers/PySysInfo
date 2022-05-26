@@ -162,4 +162,46 @@ class Util:
         return pci_path
 
     def validate_pci_format(path: str, format: str) -> bool:
-        pass
+        # PCIROOT(0)#PCI(0200)
+        if format.lower() == "windows":
+            if (
+                "#" not in path or
+
+                # Someone seems to have
+                # forgotten to put the
+                # '#' character in-between...
+                ")p" in path.lower()
+            ):
+                return False
+        
+            for comp in path.split("#"):
+                ind = comp.split("(")
+
+                # If there's only a single
+                # value, it means that it's
+                # improper, syntax-wise.
+                if len(ind) < 2:
+                    return False
+
+                ind = ind[-1].replace(")", "")
+
+                # If there's nothing
+                # inside of the PCI path
+                # component: it's improper, syntax-wise.
+                if not ind:
+                    return False
+
+                # Only accept 4-digit [hex] values.
+                if len(ind) > 4 or len(ind) < 4:
+                    return False
+
+                for val in ind:
+                    # If a value isn't according to
+                    # the hex number base, it's invalid.
+                    try:
+                        int(val, 16)
+                    except Exception:
+                        return False
+
+        elif format.lower() == "opencore":
+            pass

@@ -21,39 +21,38 @@ class X86CPUManager(BaseManager[X86CPU]):
         if kernel.get("name", "").lower() == "unknown":
             return []
 
-        return getattr(self, "_" + kernel.get("short"))()
+        try:
+            return getattr(self, "_" + kernel.get("short"))()
+        except Exception:
+            return []
 
     # The following are marked private
     # since they're meant for
     # internal usage only.
-    def _osx(self) -> list[X86CPU]:
+    def _osx(self) -> list[X86CPU] | None:
         import subprocess
 
         def exec_sysctl(*args) -> str | None:
             return subprocess.check_output(["sysctl", *args]).decode().split(": ")[-1].strip()
 
-        try:
-            model = exec_sysctl("machdep.cpu.brand_string")
-            vendor = "Intel" if "intel" in exec_sysctl(
-                "machdep.cpu.vendor").lower() else "AMD"
-            features = exec_sysctl("machdep.cpu.features")
-            cores = exec_sysctl("machdep.cpu.core_count")
-            threads = exec_sysctl("machdep.cpu.thread_count")
+        model = exec_sysctl("machdep.cpu.brand_string")
+        vendor = "Intel" if "intel" in exec_sysctl(
+            "machdep.cpu.vendor").lower() else "AMD"
+        features = exec_sysctl("machdep.cpu.features").split(" ")
+        cores = exec_sysctl("machdep.cpu.core_count")
+        threads = exec_sysctl("machdep.cpu.thread_count")
 
-            return [X86CPU(
-                cores=cores,
-                threads=threads,
-                features=features,
-                vendor=vendor,
-                model=model,
-                codename=None
-            )]
-        except Exception as e:
-            raise e
-            return []
+        return [X86CPU(
+            cores=cores,
+            threads=threads,
+            features=features,
+            vendor=vendor,
+            model=model,
+            codename=None
+        )]
 
-    def _win(self) -> list[X86CPU]:
+    def _win(self) -> list[X86CPU] | None:
         raise NotImplementedError
 
-    def _linux(self) -> list[X86CPU]:
+    def _linux(self) -> list[X86CPU] | None:
         raise NotImplementedError

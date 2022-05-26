@@ -1,14 +1,14 @@
 from core.managers.base import BaseManager
-from core.hardware.storage import StorageDevice
+from core.hardware.audio import AudioController
 from util.util import Util
 
-class StorageManager(BaseManager[StorageDevice]):
+class AudioManager(BaseManager[AudioController]):
     def __init__(self):
         pass
     
-    def net_info(self) -> list[StorageDevice]:
+    def audio_info(self) -> list[AudioController] | None:
         """
-        Extracts information about the Storage device(s)
+        Extracts information about the Audio controller(s)
         inside of the current system.
 
         Automatically takes care of providing the
@@ -20,16 +20,19 @@ class StorageManager(BaseManager[StorageDevice]):
         if kernel.get("name", "").lower() == "unknown":
             return []
         
-        return getattr(self, "_" + kernel.get("short"))()
+        try:
+            return getattr(self, "_" + kernel.get("short"))()
+        except Exception:
+            return []
 
     # The following are marked private
     # since they're meant for
     # internal usage only.
-    def _osx(self) -> list[StorageDevice]:
+    def _osx(self) -> list[AudioController] | None:
         raise NotImplementedError
 
-    def _win(self) -> list[StorageDevice]:
+    def _win(self) -> list[AudioController] | None:
         raise NotImplementedError
     
-    def _linux(self) -> list[StorageDevice]:
+    def _linux(self) -> list[AudioController] | None:
         raise NotImplementedError

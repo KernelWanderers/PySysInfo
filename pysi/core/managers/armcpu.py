@@ -1,16 +1,17 @@
 from core.managers.base import BaseManager
-from core.hardware.memory import RAM
+from core.hardware.armcpu import ARMCPU
 from util.util import Util
 
-class RAMManager(BaseManager[RAM]):
+
+class ARMCPUManager(BaseManager[ARMCPU]):
     def __init__(self):
         pass
-    
-    def mem_info(self) -> list[RAM]:
-        """
-        Extracts information about the RAM module(s)
-        inside of the current system.
 
+    def cpu_info(self) -> list[ARMCPU] | None:
+        """ 
+        Extracts information about the CPU(s) inside 
+        of the current system.
+        
         Automatically takes care of providing the
         appropriate method in context of the platform.
         """
@@ -19,17 +20,20 @@ class RAMManager(BaseManager[RAM]):
         # Unsupported platform or error.
         if kernel.get("name", "").lower() == "unknown":
             return []
-        
-        return getattr(self, "_" + kernel.get("short"))()
+
+        try:
+            return getattr(self, "_" + kernel.get("short"))()
+        except Exception:
+            return []
 
     # The following are marked private
     # since they're meant for
     # internal usage only.
-    def _osx(self) -> list[RAM]:
+    def _osx(self) -> list[ARMCPU] | None:
         raise NotImplementedError
 
-    def _win(self) -> list[RAM]:
+    def _win(self) -> list[ARMCPU] | None:
         raise NotImplementedError
-    
-    def _linux(self) -> list[RAM]:
+
+    def _linux(self) -> list[ARMCPU] | None:
         raise NotImplementedError
