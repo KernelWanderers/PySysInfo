@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "PySI"
+version = "0.1.0"
+description = "Library for detecting hardware information"
+authors = ["Kenny Doe <twitchisadeck@gmail.com>", "Mahas1"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+pyobjc = { version = "*", python = "^3.9", markers = "sys_platform == 'darwin'"  }
+wmi = { version = "*", python = "^3.9", markers = "sys_platform == 'win32'" }
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
