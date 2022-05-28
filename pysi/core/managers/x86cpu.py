@@ -52,11 +52,11 @@ class X86CPUManager(BaseManager[X86CPU]):
         )]
 
     def _win(self) -> list[X86CPU] | None:
-        import wmi
-        from core.helper.cpuid_win import CPUID
-        from core.helper.cpuid_feat import CPUID_INSTRUCTIONS
-
         try:
+            import wmi
+            from core.helper.cpuid_win import CPUID
+            from core.helper.cpuid_feat import CPUID_INSTRUCTIONS
+
             CPU = wmi.WMI().instances("Win32_Processor")[0]
 
             cpu = CPUID()
@@ -82,13 +82,13 @@ class X86CPUManager(BaseManager[X86CPU]):
             vendor = CPU.wmi_property("Manufacturer").value
 
             return [X86CPU(
-                model=model,
-                cores=cores,
-                threads=threads,
-                vendor=vendor,
-                features=features
+                cores,
+                model,
+                threads,
+                features,
+                vendor
             )]
-        except Exception as e:
+        except Exception:
             return []
 
     def _linux(self) -> list[X86CPU] | None:
