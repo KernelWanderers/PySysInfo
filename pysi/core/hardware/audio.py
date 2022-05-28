@@ -1,9 +1,9 @@
 class AudioController:
     def __init__(
         self,
-        model: str,
         dev_id: str,
         ven_id: str,
+        model: str | None = None,
         codec: str | None = None
     ):
         self.model = model
