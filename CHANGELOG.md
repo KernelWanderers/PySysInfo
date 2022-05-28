@@ -33,3 +33,20 @@
 
 * Implemented Audio controller detection for Windows
     - Also attempts to detect ALC codec, if found available
+
+* Implemented GPU detection for macOS
+
+* Implemented Audio controller detection for macOS
+
+* Implemented RAM detection for macOS
+
+* Added enums for `HDA_CONTROLLER` and `HDA_CODEC` 
+    - Helps with HDA controller/codec detection on macOS.
+
+* Added `get_cpu_vendor()` to `Util`
+
+* Added `get_hda_codec()` to `Util`
+
+* Added `get_hda_controller()` to `Util`
+
+* Added `is_hackintosh()` to `Util`
