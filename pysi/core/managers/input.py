@@ -1,12 +1,13 @@
 from core.managers.base import BaseManager
 from core.hardware.input import InputDevice
 from util.util import Util
+from util.input import InputUtil
 
 class InputManager(BaseManager[InputDevice]):
     def __init__(self):
         pass
     
-    def input_info(self) -> list[InputDevice] | None:
+    def get_info(self) -> list[InputDevice] | None:
         """
         Extracts information about the Input devices
         inside of the current system.
@@ -32,7 +33,37 @@ class InputManager(BaseManager[InputDevice]):
         raise NotImplementedError
 
     def _win(self) -> list[InputDevice] | None:
-        raise NotImplementedError
+        try:
+            from wmi import WMI
+
+            wmi = WMI()
+
+            KEYBOARDS = wmi.instances("Win32_Keyboard")
+            POINTING  = wmi.instances("Win32_PointingDevice")
+
+            def get(items):
+                data = []
+
+                for item in items:
+                    description = item.wmi_property("Description").value
+                    pnpid = item.wmi_property("PNPDeviceID").value
+                    driver = InputUtil.get_protocol(pnpid, wmi)
+
+                    data.append(
+                        InputDevice(
+                            description,
+                            driver
+                        )
+                    )
+
+                return data
+
+            return [
+                *get(KEYBOARDS),
+                *get(POINTING)
+            ]
+        except Exception:
+            return []
     
     def _linux(self) -> list[InputDevice] | None:
         raise NotImplementedError
