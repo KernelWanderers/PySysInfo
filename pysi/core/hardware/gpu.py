@@ -2,10 +2,10 @@ class GPU:
     def __init__(
         self,
         model: str,
-        pci: str,
-        acpi: str,
         dev_id: str,
         ven_id: str,
+        pci: str | None = None,
+        acpi: str | None = None,
         codename: str | None = None,
         vendor: str | None = None,
         # ==========================================

@@ -3,6 +3,9 @@ def exec():
 
     gpus = GPUManager().get_info()
 
+    if not gpus:
+        return
+
     print(
         "\n" + ("=" * 25) + "\n" +
         "|\t   GPU   \t|" +
