@@ -17,7 +17,7 @@ class NetworkController:
         """ The Vendor ID of this network controller. """
         
         self.pci = pci
-        """ The raw PCI path of this network controller. """
+        """ The PCI path of this network controller. """
         
         self.acpi = acpi
-        """ The raw ACPI path of this network controller. """
+        """ The ACPI path of this network controller. """
