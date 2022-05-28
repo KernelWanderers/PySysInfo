@@ -88,11 +88,8 @@ class Util:
             kernel = Util.get_kernel().get("os")
 
         if kernel.lower() in ["darwin", "osx", "macos"]:
-            from core.helper.ioreg import io_iterator_t, kCFAllocatorDefault, kNilOptions, IORegistryEntryGetLocationInPlane, IOObjectConformsTo, IOObjectRelease, ioname_t_to_str, corefoundation_to_native, IORegistryEntryGetParentEntry, IORegistryEntryCreateCFProperty
+            from core.helper.ioreg import kCFAllocatorDefault, kNilOptions, IORegistryEntryGetLocationInPlane, IOObjectConformsTo, IOObjectRelease, ioname_t_to_str, corefoundation_to_native, IORegistryEntryGetParentEntry, IORegistryEntryCreateCFProperty
             
-            if type(with_value) != io_iterator_t: 
-                return
-
             paths = []
             entry = with_value
 
@@ -134,7 +131,7 @@ class Util:
                     break
 
                 elif IOObjectConformsTo(entry, b"IOPCIBridge"):
-                    continue
+                    pass
 
                 else:
                     paths = []
@@ -563,7 +560,76 @@ class Util:
 
         elif format.lower() == "opencore":
             pass
-    
+
+    def get_hda_controller(dev: str, ven: str) -> str | None:
+        """ Obtains the HD Audio Controller from the given Vendor and Device ID. """
+        try:
+            from core.helper.hda_list import HDA_CONTROLLER_LIST
+
+            return HDA_CONTROLLER_LIST[
+                f"_0x{ven[2:].upper()}_0x{dev[2:].upper()}"
+            ].value
+        except Exception:
+            return
+
+    def get_hda_codec(dev: str, ven: str) -> str | None:
+        """ Obtains the HD Audio Codec from the given Vendor and Device ID. """
+        try:
+            import re
+            from core.helper.hda_list import HDA_CODEC_LIST
+            
+            value = HDA_CODEC_LIST[f"_0x{ven[2:].upper()}_0x{dev[2:].upper()}"].value
+            codec = re.search(
+                r"((\d{1,2}?|\w{1,4})?\d(\w|\d)+((\/|-)(\d|\w)+)?)",
+                value
+            )
+
+            if codec:
+                codec = codec.group()
+            else:
+                codec = value
+
+            return codec
+        except Exception:
+            return
+
+    def get_cpu_vendor(kernel: str = "") -> str | None:
+        """ Obtains the vendor of this CPU, if possible. """
+        _kernel = Util.get_kernel().get("os")
+
+        if (
+            not kernel or
+            kernel != _kernel
+        ):
+            kernel = _kernel
+
+        if kernel.lower() in ["darwin", "osx", "macos"]:
+            try:
+                from subprocess import check_output
+
+                if ".vendor" not in check_output(["sysctl", "machdep.cpu"]).decode():
+                    return "Apple"
+                
+                return check_output(["sysctl", "machdep.cpu.vendor"]).decode()
+            except Exception:
+                return
+
+        elif kernel.lower() in ["win", "win32", "windows"]:
+            try:
+                from wmi import WMI
+
+                return WMI().instances("Win32_Processor")[0].wmi_property("Manufacturer").value
+            except Exception:
+                return
+
+        elif kernel.lower() in ["linux", "cringe"]:
+            try:
+                import re
+
+                return re.search(r"(?<=vendor_id\t\:\s+)(.+)(?=\n)", open("/proc/cpuinfo", "r").read().lower()).group()
+            except Exception:
+                return
+
     def split_at_convert(with_list: list, index: int) -> list:
         """ 
         Splits at the given index and combines both sides into their own respective string. 
@@ -586,4 +652,32 @@ class Util:
         return bool(
             (1 << bit) &
             cpu(leaf, subleaf)[reg_idx]
+        )
+
+    def is_hackintosh() -> bool:
+        """ Determines whether or not the current machine is a hackintosh. """
+
+        import os
+        import subprocess
+
+        # We're targeting machines running macOS.
+        if Util.get_kernel().get("os").lower() != "macos":
+            return False
+
+        kern_ver = int(os.uname().release.split(".")[0])
+
+        if kern_ver > 19:
+            kext_loaded = subprocess.run(
+                ["kmutil", "showloaded", "--list-only", "--variant-suffix", "release"],
+                stdout=subprocess.PIPE,
+                stderr=subprocess.STDOUT,
+            )
+        else:
+            kext_loaded = subprocess.run(
+                ["kextstat", "-l"], stdout=subprocess.PIPE, stderr=subprocess.STDOUT
+            )
+
+        return any(
+            x in kext_loaded.stdout.decode().lower() 
+            for x in ("fakesmc", "virtualsmc")
         )
