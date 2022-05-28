@@ -6,7 +6,7 @@ class GPUManager(BaseManager[GPU]):
     def __init__(self):
         pass
 
-    def gpu_info(self) -> list[GPU] | None:
+    def get_info(self) -> list[GPU] | None:
         """
         Extracts information about the GPU(s) inside
         of the current system.
@@ -32,7 +32,33 @@ class GPUManager(BaseManager[GPU]):
         raise NotImplementedError
 
     def _win(self) -> list[GPU] | None:
-        raise NotImplementedError
+        try:
+            from wmi import WMI
+
+            DEVICES = WMI().instances("Win32_VideoController")
+            GPUS = []
+
+            for DEVICE in DEVICES:
+                model = DEVICE.wmi_property("Name").value
+                pnpid = DEVICE.wmi_property("PNPDeviceID").value
+                ven, dev = [x[1] for x in Util.extract_from_pnp(pnpid)]
+                pci_path = Util.construct_pci_path(pnpid)
+                acpi_path = Util.construct_acpi_path(pnpid)
+
+                GPUS.append(
+                    GPU(
+                        model,
+                        pci_path,
+                        acpi_path,
+                        dev,
+                        ven
+                    )
+                )
+            
+            return GPUS
+        except Exception:
+            return []
+
 
     def _linux(self) -> list[GPU] | None:
         raise NotImplementedError

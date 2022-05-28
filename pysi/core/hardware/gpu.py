@@ -23,10 +23,10 @@ class GPU:
         """ The (model) name of this GPU. """
 
         self.pci = pci
-        """ The raw PCI path of this GPU. """
+        """ The PCI path of this GPU. """
 
         self.acpi = acpi
-        """ The raw ACPI path of this GPU. """
+        """ The ACPI path of this GPU. """
 
         self.dev_id = dev_id
         """ The Device ID of this GPU. """
