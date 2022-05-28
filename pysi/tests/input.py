@@ -3,6 +3,9 @@ def exec():
 
     inputs = InputManager().get_info()
 
+    if not inputs:
+        return
+
     print(
         ("=" * 25) + "\n" +
         "|\t  INPUT  \t|" +

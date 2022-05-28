@@ -3,6 +3,9 @@ def exec():
 
     mobo = BaseboardManager().baseboard_info()
 
+    if not mobo:
+        return
+
     print(
         ("=" * 25) + "\n" +
         "| MOTHERBOARD/MAC MODEL |" +

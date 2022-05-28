@@ -3,6 +3,9 @@ def exec():
 
     drives = StorageManager().get_info()
 
+    if not drives:
+        return
+
     print(
         "\n" + ("=" * 25) + "\n" +
         "|\t STORAGE  \t|" +

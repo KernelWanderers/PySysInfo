@@ -3,6 +3,9 @@ def exec():
 
     hdas = AudioManager().get_info()
 
+    if not hdas:
+        return
+
     print(
         "\n" + ("=" * 25) + "\n" +
         "|\t  AUDIO   \t|" +

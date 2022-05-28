@@ -3,6 +3,9 @@ def exec():
 
     nics = NetworkManager().get_info()
 
+    if not nics:
+        return
+
     print(
         "\n" + ("=" * 25) + "\n" +
         "|\t NETWORK  \t|" +

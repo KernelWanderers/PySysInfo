@@ -3,6 +3,9 @@ def exec():
 
     rams = RAMManager().get_info()
 
+    if not rams:
+        return
+
     print(
         ("=" * 25) + "\n" +
         "|\t   RAM   \t|" +
