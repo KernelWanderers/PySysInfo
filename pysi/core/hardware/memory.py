@@ -18,7 +18,7 @@ class RAM:
         slot: RAMSlot,
         frequency: int,
         manufacturer: str,
-        capacity: int
+        capacity: int,
     ):
         self.part_no = part_no
         """ The Part-Number of this memory module. """
