@@ -1,6 +1,7 @@
 from core.managers.base import BaseManager
 from core.hardware.x86cpu import X86CPU
 from util.util import Util
+from numpy import sort
 
 
 class X86CPUManager(BaseManager[X86CPU]):
@@ -38,17 +39,17 @@ class X86CPUManager(BaseManager[X86CPU]):
         model = exec_sysctl("machdep.cpu.brand_string")
         vendor = "Intel" if "intel" in exec_sysctl(
             "machdep.cpu.vendor").lower() else "AMD"
-        features = exec_sysctl("machdep.cpu.features").split(" ")
+        features = sort(exec_sysctl("machdep.cpu.features").split(" "))
         cores = exec_sysctl("machdep.cpu.core_count")
         threads = exec_sysctl("machdep.cpu.thread_count")
 
         return [X86CPU(
-            cores=cores,
-            threads=threads,
-            features=features,
-            vendor=vendor,
-            model=model,
-            codename=None
+            cores,
+            model,
+            threads,
+            features,
+            vendor,
+            None
         )]
 
     def _win(self) -> list[X86CPU] | None:
@@ -80,6 +81,7 @@ class X86CPUManager(BaseManager[X86CPU]):
             cores = CPU.wmi_property("NumberOfCores").value
             threads = CPU.wmi_property("NumberOfLogicalProcessors").value
             vendor = CPU.wmi_property("Manufacturer").value
+            features = sort(features)
 
             return [X86CPU(
                 cores,
