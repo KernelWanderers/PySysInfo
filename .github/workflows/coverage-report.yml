@@ -60,7 +60,7 @@ jobs:
       - name: Code Coverage Summary
         uses: irongut/CodeCoverageSummary@v1.2.0
         with:
-          filename: coverage.xml
+          filename: /home/runner/work/PySysInfo/PySysInfo/coverage.xml
           format: markdown
           output: file
           fail_below_min: true
