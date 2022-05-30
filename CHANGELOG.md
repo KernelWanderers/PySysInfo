@@ -51,4 +51,4 @@
 
 * Added `is_hackintosh()` to `Util`
 
-* Added unit tests
+* Added unit tests for each core module
