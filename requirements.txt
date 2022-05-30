@@ -1,0 +1,5 @@
+# Windows
+wmi; python_version >= '3.10' and sys_platform == 'win32'
+
+# macOS
+pyobjc; python_version >= '3.10' and sys_platform == 'darwin'
