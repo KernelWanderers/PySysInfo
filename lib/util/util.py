@@ -366,7 +366,7 @@ class Util:
 
                     for comp in [x.split("(")[1][:-1] for x in device.split("#")]:
                         if "_SB" in comp:
-                            acpi_path += "\_SB"
+                            acpi_path += "\\_SB"
                         else:
                             acpi_path += "." + comp
 
@@ -560,6 +560,38 @@ class Util:
 
         elif format.lower() == "opencore":
             pass
+
+    def get_gpu_codename(dev: str, ven: str) -> str | None:
+        if "1002" in ven.lower():
+            from .gpus import AMD
+
+            GPUS = AMD
+        
+        elif "10de" in ven.lower():
+            from .gpus import NVIDIA
+
+            GPUS = NVIDIA
+
+        def convert_underscore(value: str) -> str:
+            return " ".join([
+                x[0].upper() + x[1:].lower()
+                for x in value.split("_")
+            ])
+
+        codename = None
+
+        for GPU in GPUS:
+            for id in GPU.value:
+                print(dev, ven, id)
+                if (
+                    id[0].lstrip("0x") in ven.lower() and
+                    id[1].lstrip("0x") in dev.lower()
+                ):
+                    codename = convert_underscore(GPU.name)
+                    break
+
+        print(codename)
+        return codename
 
     def get_hda_controller(dev: str, ven: str) -> str | None:
         """ Obtains the HD Audio Controller from the given Vendor and Device ID. """
