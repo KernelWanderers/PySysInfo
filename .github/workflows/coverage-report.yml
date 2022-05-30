@@ -33,41 +33,12 @@ jobs:
       - name: Add temporary PYTHONPATH and run coverage
         run: PYTHONPATH=lib coverage run -m pytest tests/
 
-      - name: Generate report in XML format
-        run: coverage xml
-
-      - name: Upload report to Artifacts
-        uses: actions/upload-artifact@v2
-        with:
-          name: coverage.xml
-          path: coverage.xml
-
-  generate-report:
-    needs: analyze
-    runs-on: ubuntu-latest
-    name: Generate report
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          ref: main
-
-      - name: Download code coverage XML file
-        uses: actions/download-artifact@v2
-        with:
-          name: coverage.xml
-          path: coverage.xml
-          
-      - name: Code Coverage Summary
-        uses: irongut/CodeCoverageSummary@v1.2.0
-        with:
-          filename: ${{ github.workspace }}/coverage.xml
-          format: markdown
-          output: file
-          fail_below_min: true
+      - name: Generate report in HTML format
+        run: coverage html
 
       - name: Add Coverage to PR comment
         uses: marocchino/sticky-pull-request-comment@v2
         if: github.event_name == 'pull_request'
         with:
           recreate: true
-          path: code-coverage-results.md
+          path: htmlcov/index.html
