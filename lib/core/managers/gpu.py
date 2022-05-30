@@ -138,6 +138,8 @@ class GPUManager(BaseManager[GPU]):
                             gen
                         )
                     )
+                
+                ioreg.IOObjectRelease(i)
 
             if default:
                 GPUS += self._osx(False)

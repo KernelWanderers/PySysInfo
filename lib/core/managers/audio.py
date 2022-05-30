@@ -115,6 +115,8 @@ class AudioManager(BaseManager[AudioController]):
                             None
                         )
                     )
+                
+                ioreg.IOObjectRelease(i)
 
             if not default:
                 HDAS += self._osx(True)

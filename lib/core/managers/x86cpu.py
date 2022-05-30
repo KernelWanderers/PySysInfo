@@ -39,9 +39,9 @@ class X86CPUManager(BaseManager[X86CPU]):
         model = exec_sysctl("machdep.cpu.brand_string")
         vendor = "Intel" if "intel" in exec_sysctl(
             "machdep.cpu.vendor").lower() else "AMD"
-        features = sort(exec_sysctl("machdep.cpu.features").split(" "))
-        cores = exec_sysctl("machdep.cpu.core_count")
-        threads = exec_sysctl("machdep.cpu.thread_count")
+        features = list(sort(exec_sysctl("machdep.cpu.features").split(" ")))
+        cores = int(exec_sysctl("machdep.cpu.core_count"))
+        threads = int(exec_sysctl("machdep.cpu.thread_count"))
 
         return [X86CPU(
             cores,
@@ -78,10 +78,10 @@ class X86CPUManager(BaseManager[X86CPU]):
                     features.append(name)
 
             model = CPU.wmi_property("Name").value
-            cores = CPU.wmi_property("NumberOfCores").value
-            threads = CPU.wmi_property("NumberOfLogicalProcessors").value
+            cores = int(CPU.wmi_property("NumberOfCores").value)
+            threads = int(CPU.wmi_property("NumberOfLogicalProcessors").value)
             vendor = CPU.wmi_property("Manufacturer").value
-            features = sort(features)
+            features = list(sort(features))
 
             return [X86CPU(
                 cores,

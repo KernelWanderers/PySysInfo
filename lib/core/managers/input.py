@@ -30,7 +30,52 @@ class InputManager(BaseManager[InputDevice]):
     # since they're meant for
     # internal usage only.
     def _osx(self) -> list[InputDevice] | None:
-        raise NotImplementedError
+        try:
+            import core.helper.ioreg as ioreg
+
+            device = {"IOProviderClass": "IOHIDDevice"}
+
+            interface = ioreg.ioiterator_to_list(
+                ioreg.IOServiceGetMatchingServices(
+                    ioreg.kIOMasterPortDefault,
+                    device,
+                    None
+                )[1]
+            )
+
+            INPUTS = []
+
+            for i in interface:
+                device = ioreg.corefoundation_to_native(
+                    ioreg.IORegistryEntryCreateCFProperties(
+                        i,
+                        None,
+                        ioreg.kCFAllocatorDefault,
+                        ioreg.kNilOptions
+                    )
+                )[1]
+
+                name = device.get("Product")
+                protocol = device.get("Transport").decode()
+
+                if not name:
+                    continue
+
+                if protocol:
+                    name += f" ({protocol})"
+
+                INPUTS.append(
+                    InputDevice(
+                        name,
+                        protocol
+                    )
+                )
+
+                ioreg.IOObjectRelease(i)
+
+            return INPUTS
+        except Exception:
+            return []
 
     def _win(self) -> list[InputDevice] | None:
         try:

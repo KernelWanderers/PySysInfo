@@ -119,6 +119,8 @@ class RAMManager(BaseManager[RAM]):
                         elif "dimm-manufacturer" in prop.lower():
                             manufacturer.append(value[i])
 
+                ioreg.IOObjectRelease(i)
+
             for i in range(length):
                 modules.append(
                     RAM(
