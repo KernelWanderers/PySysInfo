@@ -50,3 +50,5 @@
 * Added `get_hda_controller()` to `Util`
 
 * Added `is_hackintosh()` to `Util`
+
+* Added unit tests
