@@ -34,23 +34,11 @@ class GPU:
         self.ven_id = ven_id
         """ The Vendor ID of this GPU. """
 
+        self.codename = codename
+        """ The codename of this GPU (if available.) """
+
         self.vendor = vendor
         """ The (readable) vendor of this GPU (if available.) """
-
-        self.codename = (
-            codename
-            if type(self.vendor) == str and
-            self.vendor.lower() != "apple"
-            else None
-        )
-        """ 
-        The codename of this GPU (if available.)
-
-        Restricted to x86_64/x86 iGFXs and dGPUs, 
-        can't yet handle Apple ARM64 chips.
-
-        Returns nothing if it's Apple ARM64.
-        """
 
         self.cores = (
             cores

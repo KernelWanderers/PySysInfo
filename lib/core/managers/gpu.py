@@ -105,6 +105,9 @@ class GPUManager(BaseManager[GPU]):
 
                     pci_path = Util.construct_pci_path(i)
                     acpi_path = Util.construct_acpi_path(plane)
+                    codename = Util.get_gpu_codename(dev, ven)
+
+                    print(codename)
 
                     GPUS.append(
                         GPU(
@@ -113,12 +116,19 @@ class GPUManager(BaseManager[GPU]):
                             ven,
                             pci_path,
                             acpi_path,
+                            codename,
                         )
                     )
                 
                 else:
                     gpuconf = device.get("GPUConfigurationVariable", {})
+                    codename = device.get("CFBundleIdentifier", "")
                     dev = ""
+
+                    if codename:
+                        codename = "AGX " + codename.split(".")[-1].split("AGX")[-1]
+                    else:
+                        codename = None
 
                     cores = gpuconf.get("num_cores")
                     ne_cores = gpuconf.get("num_gps")
@@ -131,8 +141,8 @@ class GPUManager(BaseManager[GPU]):
                             ven,
                             None,
                             None,
-                            None,
-                            None,
+                            codename,
+                            "Apple",
                             cores,
                             ne_cores,
                             gen
