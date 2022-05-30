@@ -36,14 +36,13 @@ jobs:
       - name: Generate report in XML format
         run: coverage xml
 
-  generate-report:
     runs-on: ubuntu-latest
     name: Generate report
     steps:
       - uses: actions/checkout@v3
         with:
           ref: main
-          
+
       - name: Code Coverage Summary
         uses: irongut/CodeCoverageSummary@v1.2.0
         with:
