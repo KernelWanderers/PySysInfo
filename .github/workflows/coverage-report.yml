@@ -8,8 +8,11 @@ on:
 
 jobs:
   analyze:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-latest, ubuntu-latest, windows-latest]
     permissions: write-all
-    runs-on: macos-latest
     name: CI analyze
     steps:
       - uses: actions/checkout@v3
@@ -33,12 +36,15 @@ jobs:
       - name: Add temporary PYTHONPATH and run coverage
         run: PYTHONPATH=lib coverage run -m pytest tests/
 
-      - name: Generate report in HTML format
-        run: coverage html
+      - name: Convert coverage report to XML format
+        run: coverage xml
 
-      - name: Add Coverage to PR comment
-        uses: marocchino/sticky-pull-request-comment@v2
-        if: github.event_name == 'pull_request'
+      - name: Run Codecov-Action
+        uses: codecov/codecov-action@v2
         with:
-          recreate: true
-          path: htmlcov/index.html
+          token: ${{ github.CODECOV_TOKEN }}
+          files: ./coverage.xml
+          flags: unittests
+          name: codecov-umbrella
+          fail_ci_if_error: true
+          verbose: true
