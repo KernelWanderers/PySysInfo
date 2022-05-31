@@ -582,7 +582,6 @@ class Util:
 
         for GPU in GPUS:
             for id in GPU.value:
-                print(dev, ven, id)
                 if (
                     id[0].lstrip("0x") in ven.lower() and
                     id[1].lstrip("0x") in dev.lower()
@@ -590,7 +589,6 @@ class Util:
                     codename = convert_underscore(GPU.name)
                     break
 
-        print(codename)
         return codename
 
     def get_hda_controller(dev: str, ven: str) -> str | None:
