@@ -107,8 +107,6 @@ class GPUManager(BaseManager[GPU]):
                     acpi_path = Util.construct_acpi_path(plane)
                     codename = Util.get_gpu_codename(dev, ven)
 
-                    print(codename)
-
                     GPUS.append(
                         GPU(
                             model,
