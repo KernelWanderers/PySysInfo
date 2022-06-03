@@ -13,7 +13,6 @@ jobs:
       matrix:
         os: [macos-latest, windows-latest]
     permissions: write-all
-    runs-on: ${{ matrix.os }}
     name: CI analyze
     steps:
       - uses: actions/checkout@v3
