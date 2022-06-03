@@ -9,8 +9,12 @@ on:
 jobs:
   analyze:
     permissions: write-all
-    runs-on: macos-latest
-    name: CI analyze
+    strategy:
+      matrix:
+        os: [windows-latest, macos-latest]
+        name: [windows, macos]
+    runs-on: ${{ matrix.os }}
+    name: CI analyze for ${{ matrix.name }}
     steps:
       - uses: actions/checkout@v3
         with:
@@ -32,6 +36,7 @@ jobs:
 
       - name: Add temporary PYTHONPATH and run coverage
         run: PYTHONPATH=lib coverage run -m pytest tests/
+        shell: bash
 
       - name: Generate report in HTML format
         run: coverage html
