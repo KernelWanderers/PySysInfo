@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "PySI"
-version = "0.1.0"
+version = "0.1.4"
 description = "Library for detecting hardware information"
 authors = ["Kenny Doe <twitchisadeck@gmail.com>", "Mahas1"]
 license = "MIT"
@@ -8,8 +8,13 @@ license = "MIT"
 [tool.poetry.dependencies]
 pyobjc = { version = "*", python = "^3.9", markers = "sys_platform == 'darwin'"  }
 wmi = { version = "*", python = "^3.9", markers = "sys_platform == 'win32'" }
+numpy = { version = "*" }
 
-[tool.poetry.dev-dependencies]
+[[tool.poetry.source]]
+name = "pysi"
+url = "https://test.pypi.org/legacy/"
+default = false
+secondary = false
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

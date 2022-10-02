@@ -1,6 +1,6 @@
-from core.managers.base import BaseManager
-from core.hardware.audio import AudioController
-from util.util import Util
+from pysi.core.managers.base import BaseManager
+from pysi.core.hardware.audio import AudioController
+from pysi.util.util import Util
 
 class AudioManager(BaseManager[AudioController]):
     def __init__(self):
@@ -128,7 +128,7 @@ class AudioManager(BaseManager[AudioController]):
     def _win(self) -> list[AudioController] | None:
         try:
             from wmi import WMI
-            from util.util import Util
+            from pysi.util.util import Util
 
             HDAS = WMI().instances("Win32_SoundDevice")
             CONTROLLERS = []

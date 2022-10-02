@@ -1,6 +1,6 @@
 def test_gpu():
-    from core.managers.gpu import GPUManager
-    from core.hardware.gpu import GPU
+    from pysi.core.managers.gpu import GPUManager
+    from pysi.core.hardware.gpu import GPU
 
     gpus = GPUManager().get_info()
 

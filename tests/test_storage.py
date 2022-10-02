@@ -1,6 +1,6 @@
 def test_storage():
-    from core.managers.storage import StorageManager
-    from core.hardware.storage import StorageDevice
+    from pysi.core.managers.storage import StorageManager
+    from pysi.core.hardware.storage import StorageDevice
 
     drives = StorageManager().get_info()
 

@@ -1,5 +1,5 @@
 def test_armcpu():
-    from core.managers.armcpu import ARMCPUManager
+    from pysi.core.managers.armcpu import ARMCPUManager
 
     cpus = ARMCPUManager().get_info()
 

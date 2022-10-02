@@ -1,6 +1,6 @@
-from core.managers.base import BaseManager
-from core.hardware.x86cpu import X86CPU
-from util.util import Util
+from pysi.core.managers.base import BaseManager
+from pysi.core.hardware.x86cpu import X86CPU
+from pysi.util.util import Util
 from numpy import sort
 
 
@@ -55,8 +55,8 @@ class X86CPUManager(BaseManager[X86CPU]):
     def _win(self) -> list[X86CPU] | None:
         try:
             import wmi
-            from core.helper.cpuid_win import CPUID
-            from core.helper.cpuid_feat import CPUID_INSTRUCTIONS
+            from pysi.core.helper.cpuid_win import CPUID
+            from pysi.core.helper.cpuid_feat import CPUID_INSTRUCTIONS
 
             CPU = wmi.WMI().instances("Win32_Processor")[0]
 

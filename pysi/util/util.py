@@ -88,7 +88,7 @@ class Util:
             kernel = Util.get_kernel().get("os")
 
         if kernel.lower() in ["darwin", "osx", "macos"]:
-            from core.helper.ioreg import kCFAllocatorDefault, kNilOptions, IORegistryEntryGetLocationInPlane, IOObjectConformsTo, IOObjectRelease, ioname_t_to_str, corefoundation_to_native, IORegistryEntryGetParentEntry, IORegistryEntryCreateCFProperty
+            from pysi.core.helper.ioreg import kCFAllocatorDefault, kNilOptions, IORegistryEntryGetLocationInPlane, IOObjectConformsTo, IOObjectRelease, ioname_t_to_str, corefoundation_to_native, IORegistryEntryGetParentEntry, IORegistryEntryCreateCFProperty
             
             paths = []
             entry = with_value
@@ -594,7 +594,7 @@ class Util:
     def get_hda_controller(dev: str, ven: str) -> str | None:
         """ Obtains the HD Audio Controller from the given Vendor and Device ID. """
         try:
-            from core.helper.hda_list import HDA_CONTROLLER_LIST
+            from pysi.core.helper.hda_list import HDA_CONTROLLER_LIST
 
             return HDA_CONTROLLER_LIST[
                 f"_0x{ven[2:].upper()}_0x{dev[2:].upper()}"
@@ -606,7 +606,7 @@ class Util:
         """ Obtains the HD Audio Codec from the given Vendor and Device ID. """
         try:
             import re
-            from core.helper.hda_list import HDA_CODEC_LIST
+            from pysi.core.helper.hda_list import HDA_CODEC_LIST
             
             value = HDA_CODEC_LIST[f"_0x{ven[2:].upper()}_0x{dev[2:].upper()}"].value
             codec = re.search(

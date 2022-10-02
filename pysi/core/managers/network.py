@@ -1,6 +1,6 @@
-from core.managers.base import BaseManager
-from core.hardware.network import NetworkController
-from util.util import Util
+from pysi.core.managers.base import BaseManager
+from pysi.core.hardware.network import NetworkController
+from pysi.util.util import Util
 
 class NetworkManager(BaseManager[NetworkController]):
     def __init__(self):
@@ -111,7 +111,7 @@ class NetworkManager(BaseManager[NetworkController]):
     def _win(self) -> list[NetworkController] | None:
         try:
             from wmi import WMI
-            from util.util import Util
+            from pysi.util.util import Util
 
             NICS = WMI().instances("Win32_NetworkAdapter")
 

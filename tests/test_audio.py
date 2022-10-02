@@ -1,6 +1,6 @@
 def test_audio():
-    from core.managers.audio import AudioManager
-    from core.hardware.audio import AudioController
+    from pysi.core.managers.audio import AudioManager
+    from pysi.core.hardware.audio import AudioController
 
     hdas = AudioManager().get_info()
 

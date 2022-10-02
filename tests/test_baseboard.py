@@ -1,6 +1,6 @@
 def test_baseboard():
-    from core.managers.baseboard import BaseboardManager
-    from core.hardware.baseboard import Baseboard
+    from pysi.core.managers.baseboard import BaseboardManager
+    from pysi.core.hardware.baseboard import Baseboard
 
     mobo = BaseboardManager().baseboard_info()
 

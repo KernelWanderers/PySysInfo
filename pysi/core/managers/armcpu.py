@@ -1,6 +1,6 @@
-from lib.core.managers.base import BaseManager
-from lib.core.hardware.armcpu import ARMCPU
-from lib.util.util import Util
+from pysi.core.managers.base import BaseManager
+from pysi.core.hardware.armcpu import ARMCPU
+from pysi.util.util import Util
 
 
 class ARMCPUManager(BaseManager[ARMCPU]):
@@ -32,7 +32,7 @@ class ARMCPUManager(BaseManager[ARMCPU]):
     def _osx(self) -> list[ARMCPU] | None:
         try:
             import core.helper.ioreg as ioreg
-            from core.hardware.armcpu import ARMCPU
+            from pysi.core.hardware.armcpu import ARMCPU
 
             def exec_sysctl(*args):
                 import subprocess

@@ -1,6 +1,6 @@
-from core.managers.base import BaseManager
-from core.hardware.gpu import GPU
-from util.util import Util
+from pysi.core.managers.base import BaseManager
+from pysi.core.hardware.gpu import GPU
+from pysi.util.util import Util
 
 class GPUManager(BaseManager[GPU]):
     def __init__(self):

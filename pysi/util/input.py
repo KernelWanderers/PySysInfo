@@ -30,14 +30,14 @@ class InputUtil:
     def get_protocol(pnpid, _wmi) -> str | None:
         """ Obtains the parent driver/protocol type for the given input device (WINDOWS ONLY.) """
 
-        from util.util import Util
+        from pysi.util.util import Util
 
         if Util.get_kernel().get("os") != "Windows":
             return
 
         from ctypes import c_ulong
-        from interops.cfgmgr32.core.cfgmgr32 import CM32
-        from interops.cfgmgr32.util.get_info import get_info
+        from pysi.interops.cfgmgr32.core.cfgmgr32 import CM32
+        from pysi.interops.cfgmgr32.util.get_info import get_info
         from wmi import WMI
 
         if (
@@ -128,7 +128,7 @@ class InputUtil:
     def get_smbus_driver(_wmi):
         """ Obtains the SMBus driver (WINDOWS ONLY.) """
 
-        from util.util import Util
+        from pysi.util.util import Util
         from wmi import WMI
 
         if Util.get_kernel().get("os") != "Windows":

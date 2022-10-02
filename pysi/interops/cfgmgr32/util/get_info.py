@@ -1,8 +1,8 @@
 from ctypes import c_ulong, c_ushort
-from interops.cfgmgr32.core.cfgmgr32 import CM32
-from interops.cfgmgr32.data.props import props
-from interops.cfgmgr32.structs.devpropkey import DEVPROPKEY
-from interops.cfgmgr32.structs.guid import GUID
+from pysi.interops.cfgmgr32.core.cfgmgr32 import CM32
+from pysi.interops.cfgmgr32.data.props import props
+from pysi.interops.cfgmgr32.structs.devpropkey import DEVPROPKEY
+from pysi.interops.cfgmgr32.structs.guid import GUID
 
 
 def get_info(pdnDevInst=c_ulong(), cm32=CM32()):

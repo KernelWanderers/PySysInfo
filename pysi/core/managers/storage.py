@@ -1,6 +1,6 @@
-from core.managers.base import BaseManager
-from core.hardware.storage import StorageDevice
-from util.util import Util
+from pysi.core.managers.base import BaseManager
+from pysi.core.hardware.storage import StorageDevice
+from pysi.util.util import Util
 
 
 class StorageManager(BaseManager[StorageDevice]):
@@ -99,7 +99,7 @@ class StorageManager(BaseManager[StorageDevice]):
     def _win(self) -> list[StorageDevice] | None:
         try:
             from wmi import WMI
-            from util.storage_type import BUS_TYPE, MEDIA_TYPE
+            from pysi.util.storage_type import BUS_TYPE, MEDIA_TYPE
             from operator import itemgetter
 
             STORAGE_DEV = WMI(namespace="Microsoft/Windows/Storage").instances("MSFT_PhysicalDisk")

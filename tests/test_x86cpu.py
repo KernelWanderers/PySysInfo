@@ -1,6 +1,6 @@
 def test_x86cpu():
-    from core.managers.x86cpu import X86CPUManager
-    from core.hardware.x86cpu import X86CPU
+    from pysi.core.managers.x86cpu import X86CPUManager
+    from pysi.core.hardware.x86cpu import X86CPU
 
     cpus = X86CPUManager().get_info()
     cpu = cpus[0]

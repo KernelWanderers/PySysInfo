@@ -1,6 +1,6 @@
 def test_input():
-    from core.managers.input import InputManager
-    from core.hardware.input import InputDevice
+    from pysi.core.managers.input import InputManager
+    from pysi.core.hardware.input import InputDevice
 
     inputs = InputManager().get_info()
 

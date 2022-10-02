@@ -1,6 +1,6 @@
 def test_memory():
-    from core.managers.memory import RAMManager
-    from core.hardware.memory import RAM, RAMSlot
+    from pysi.core.managers.memory import RAMManager
+    from pysi.core.hardware.memory import RAM, RAMSlot
 
     rams = RAMManager().get_info()
 

@@ -1,7 +1,7 @@
-from core.managers.base import BaseManager
-from core.hardware.input import InputDevice
-from util.util import Util
-from util.input import InputUtil
+from pysi.core.managers.base import BaseManager
+from pysi.core.hardware.input import InputDevice
+from pysi.util.util import Util
+from pysi.util.input import InputUtil
 
 class InputManager(BaseManager[InputDevice]):
     def __init__(self):

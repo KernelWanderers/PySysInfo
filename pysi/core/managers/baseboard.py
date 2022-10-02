@@ -1,6 +1,6 @@
-from core.hardware.baseboard import Baseboard
-from core.managers.base import BaseManager
-from util.util import Util
+from pysi.core.hardware.baseboard import Baseboard
+from pysi.core.managers.base import BaseManager
+from pysi.util.util import Util
 
 
 class BaseboardManager(BaseManager[Baseboard]):

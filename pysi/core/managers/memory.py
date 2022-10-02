@@ -1,7 +1,7 @@
-from core.managers.base import BaseManager
-from core.hardware.memory import RAM
-from core.hardware.memory import RAMSlot
-from util.util import Util
+from pysi.core.managers.base import BaseManager
+from pysi.core.hardware.memory import RAM
+from pysi.core.hardware.memory import RAMSlot
+from pysi.util.util import Util
 
 
 class RAMManager(BaseManager[RAM]):
@@ -139,7 +139,7 @@ class RAMManager(BaseManager[RAM]):
 
     def _win(self) -> list[RAM] | None:
         try:
-            from util.memory_type import MEMORY_TYPE
+            from pysi.util.memory_type import MEMORY_TYPE
             from wmi import WMI
 
             RAM_MODULES = WMI().instances("Win32_PhysicalMemory")
@@ -162,7 +162,7 @@ class RAMManager(BaseManager[RAM]):
                         RAMSlot(bank, channel),
                         int(frequency) * 10**6,
                         manufacturer,
-                        capacity * 10**6
+                        int(capacity) * 10**6
                     )
                 )
 

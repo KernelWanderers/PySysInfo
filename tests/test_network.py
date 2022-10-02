@@ -1,6 +1,6 @@
 def test_network():
-    from core.managers.network import NetworkManager
-    from core.hardware.network import NetworkController
+    from pysi.core.managers.network import NetworkManager
+    from pysi.core.hardware.network import NetworkController
 
     nics = NetworkManager().get_info()
 
