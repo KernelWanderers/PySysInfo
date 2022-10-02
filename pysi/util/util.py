@@ -444,7 +444,7 @@ class Util:
 
         elif (
             current.lower() == "linux" and
-            type(path) == list[str]
+            type(path) == list
         ):
             def convert(x): return hex(int(x, 16))[2:]
 
@@ -454,7 +454,7 @@ class Util:
                 if domain not in values:
                     values.append(domain)
 
-                dev, func = pcidebug.split(":")[2].split(",")
+                dev, func = pcidebug.split(":")[2].split(".")
 
                 values.append((
                     convert(dev),
@@ -490,7 +490,7 @@ class Util:
                     pci_path += f"PCIROOT({val})"
                     continue
 
-                pci_path += f"#PCI({dev.zfill(2)}{func.zfill(2)})"
+                pci_path += f"#PCI({dev.split('x')[-1].zfill(2)}{func.split('x')[-1].zfill(2)})".upper()
 
             elif target.lower() == "macos":
                 pci_path = values
@@ -502,7 +502,7 @@ class Util:
                     continue
 
                 pci_path.append(
-                    f"{domain.zfill(4)}:xx:{dev.zfill(2)}.{func.zfill(1)}")
+                    f"{domain.zfill(4)}:xx:{dev.split('x')[-1].zfill(2)}.{func.split('x')[-1].zfill(1)}")
 
             elif target.lower() == "opencore":
                 if type(val) == str:
