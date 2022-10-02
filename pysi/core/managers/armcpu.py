@@ -31,7 +31,7 @@ class ARMCPUManager(BaseManager[ARMCPU]):
     # internal usage only.
     def _osx(self) -> list[ARMCPU] | None:
         try:
-            import core.helper.ioreg as ioreg
+            import pysi.core.helper.ioreg as ioreg
             from pysi.core.hardware.armcpu import ARMCPU
 
             def exec_sysctl(*args):

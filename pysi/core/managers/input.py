@@ -31,7 +31,7 @@ class InputManager(BaseManager[InputDevice]):
     # internal usage only.
     def _osx(self) -> list[InputDevice] | None:
         try:
-            import core.helper.ioreg as ioreg
+            import pysi.core.helper.ioreg as ioreg
 
             device = {"IOProviderClass": "IOHIDDevice"}
 

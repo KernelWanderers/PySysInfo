@@ -30,7 +30,7 @@ class AudioManager(BaseManager[AudioController]):
     # internal usage only.
     def _osx(self, default=False) -> list[AudioController] | None:
         try:
-            import core.helper.ioreg as ioreg
+            import pysi.core.helper.ioreg as ioreg
             import binascii
 
             # TODO: implementation for Apple ARM64

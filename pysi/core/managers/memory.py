@@ -32,7 +32,7 @@ class RAMManager(BaseManager[RAM]):
     # internal usage only.
     def _osx(self) -> list[RAM] | None:
         try:
-            import core.helper.ioreg as ioreg
+            import pysi.core.helper.ioreg as ioreg
 
             if Util.get_cpu_vendor() == "Apple":
                 return

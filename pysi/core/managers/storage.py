@@ -31,7 +31,8 @@ class StorageManager(BaseManager[StorageDevice]):
     # internal usage only.
     def _osx(self) -> list[StorageDevice] | None:
         try:
-            import core.helper.ioreg as ioreg
+            import pysi.core.helper.ioreg as ioreg
+
             STORAGE = {
                 "Solid State": "Solid State Drive (SSD)",
                 "Rotational": "Hard Disk Drive (HDD)",

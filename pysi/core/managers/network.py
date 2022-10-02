@@ -30,7 +30,7 @@ class NetworkManager(BaseManager[NetworkController]):
     # internal usage only.
     def _osx(self, default=True) -> list[NetworkController] | None:
         try:
-            import core.helper.ioreg as ioreg
+            import pysi.core.helper.ioreg as ioreg
             import binascii
         
             if default:

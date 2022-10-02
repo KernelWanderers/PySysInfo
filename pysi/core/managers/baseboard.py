@@ -33,7 +33,7 @@ class BaseboardManager(BaseManager[Baseboard]):
     # since they're meant for
     # internal usage only.
     def _osx(self) -> Baseboard | None:
-        import core.helper.ioreg as ioreg
+        import pysi.core.helper.ioreg as ioreg
 
         BASEBOARD = ioreg.corefoundation_to_native(
             ioreg.IORegistryEntryCreateCFProperties(
